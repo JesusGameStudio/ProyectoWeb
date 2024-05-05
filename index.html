@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name=“viewport” content=“width=device-width, initial-scale=1” />
+    <title>Centipede Wars</title>
+    <style>
+
+        @font-face{
+            font-family: Centipede;
+            src: url(centipede.ttf);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1{
+           font-family: Centipede, sans-serif; 
+           letter-spacing: 10px;
+        }
+        header h1, h3{
+            text-align: center;
+            font-size: 30px;
+        }
+        header h4,h5,p{
+            padding: 20px;
+            font-size: 20px;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #666;
+        }
+        section {
+            padding-top: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 200px;
+            display: none;
+        }
+        section.active {
+            display: block;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .PaginaPrincipal {
+            display: flex;
+            align-items: center;
+        }
+        .imagen{
+            width: 50%;
+            height: 50%;
+            margin-right: 100px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        .texto{
+            left: 10px;
+        }
+        #menu a{
+            font-size: 20px;
+        }
+        .submenu {
+            background-color: #444;
+            color: #fff;
+            position: fixed;
+            top: 590px;
+            right: 0;
+            padding: 10px;
+            display: none;
+        }
+        .submenu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .submenu ul li {
+            margin-bottom: 5px;
+        }
+        .submenu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+        }
+        .recompensas-boton {
+            background-color: #E6B739;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .recompensas-boton:hover {
+            background-color: #0056b3;
+        }
+        #Descripcion h2 {
+            font-family: Centipede, sans-serif;
+            letter-spacing: 10px;
+        }
+        #Historia h2 {
+            font-family: Centipede, sans-serif;
+            letter-spacing: 10px;
+        }
+        #Gameplay h2 {
+            font-family: Centipede, sans-serif;
+            letter-spacing: 10px;
+        }
+        #Objetivo h2 {
+            font-family: Centipede, sans-serif;
+            letter-spacing: 10px;
+        }
+        #Objetivo h3 {
+            font-family: Centipede, sans-serif;
+            letter-spacing: 7px;
+        }
+        #Equipo h2 {
+            font-family: Centipede, sans-serif;
+            letter-spacing: 10px;
+        }
+        .TopDonadores h2, h3, h4{
+            text-align: center;
+        }
+        #Comentarios {
+            background-color: #f5f5f5; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+        #contenedor-comentarios {
+            margin-bottom: 20px; 
+        }
+        #Comentarios h3 {
+            color: #333;
+            font-size: 30px; 
+            margin-bottom: 10px; 
+        }
+        #SeccionComentarios {
+            font-family: Arial, sans-serif; 
+        }
+        #SeccionComentarios label {
+            display: block; 
+            font-weight: bold; 
+            margin-bottom: 5px;
+            margin-top: 50px;
+            font-size: 30px; 
+        }
+        #SeccionComentarios textarea {
+            width: 100%; 
+            padding: 8px; 
+            margin-bottom: 50px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+        }
+        #SeccionComentarios button {
+            background-color: #E6B739;
+            color: #fff; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin-bottom: 200px; 
+            transition: background-color 0.3s; 
+            font-size: 30px; 
+        }
+        #Equipo h3{
+            font-size: 20px;
+        }
+        @media screen and (max-width: 600px)
+        {
+            nav, section, footer{
+                min-width: 250px;
+                margin-bottom: 0px;
+            }
+            section {
+                padding-top: 60px;
+            }
+            .imagen{
+                max-width: 25%;
+                height: 25%;
+            }
+            header{
+                padding: 10px;
+                height: 40px;
+            }
+            .submenu {
+                top: 690px;
+            }
+        }
+    </style>
+</head>
+<body onload="showPage('Campaña')">
+    <header id="Encabezado" class="Encabezado-fixed">
+        <h1>Centipede Wars</h1>
+        <h3>Muchos Pies, Mucha Emoción</h3>
+        <div class="PaginaPrincipal">
+        <img class="imagen" src="https://raw.githubusercontent.com/JesusGameStudio/Proyecto-Web-Grupo-B/master/Imagen_Promocional.png" widht="500px" height= "500px"/>
+        <div class="texto">
+            <h4>Centipede es un juego multijugador estratégico en el que varios ciempiés se enfrentarán en una ardua batalla de la que solo 1 saldrá vencedor.</h4>
+            <h5>Creado por</h5>
+            <p>START STUDIOS</p>
+            <img src="https://raw.githubusercontent.com/JesusGameStudio/Proyecto-Web-Grupo-B/master/Logo_Equipo.png" widht="250px" height= "250px"/>
+        </div>
+    </div>
+    </header>
+
+    <nav id="menu" class="menu-fixed">
+        <a href="#" onclick="showPage('Campaña')">Campaña</a>
+        <a href="#" onclick="showPage('Recompensas')">Recompensas</a>
+        <a href="#" onclick="showPage('Preguntas Frecuentes')">Preguntas frecuentes</a>
+        <a href="#" onclick="showPage('Comentarios')">Comentarios</a>
+    </nav>
+
+    <section id="Campaña">
+        <div class="submenu">
+            <ul>
+                <li><a href="#VideoPromocional">Video Promocional</a></li>
+                <li><a href="#Descripcion">Descripción</a></li>
+                <li><a href="#Historia">Historia</a></li>
+                <li><a href="#Gameplay">Gameplay</a></li>
+                <li><a href="#Objetivo">Objetivos</a></li>
+                <li><a href="#Equipo">Equipo</a></li>
+                <li><a href="#CancionOriginal">Canción Original</a></li>
+            </ul>
+        </div>
+        <div id="VideoPromocional">
+            <video width="640" height="360" controls>
+             <source src="Video/Video Promocional Centipede Wars.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div id="CancionOriginal">
+        <audio controls>
+        <source src="Audio/Cancion_cienpies.mp3" type="audio/mp3">
+        </audio>
+        </div>
+        <div id="Descripcion">
+        <h2>Descripción</h2>
+        <p>Centipede Wars es un emocionante juego multijugador estratégico que te sumerge en un fascinante enfrentamiento entre varios ciempiés, donde solo uno puede salir victorioso. En este innovador título, los jugadores se enfrentan en una ardua batalla estratégica, donde la astucia, la planificación y la toma de decisiones rápidas son clave para alcanzar la victoria.</p>
+        </div>
+        <div id="Historia">
+        <h2>Historia</h2>
+        <p>En un bosque distante, los ciempiés reinan supremos. En este lugar, cuatro colmenas de diferente color albergan a distintas civilizaciones de ciempiés. Sin embargo, la paz que una vez reinó se ve amenazada cuando la guerra estalla entre las cuatro colmenas.</p>
+        <p>Los comandantes de cada ejército se encuentran repentinamente atrapados en una batalla épica, un enfrentamiento 1 vs 1 vs 1 vs 1. Con el destino de sus colmenas en juego, se ven obligados a forjar alianzas temporales con antiguos enemigos, mejorar su equipamiento, y hacer todo lo posible para evitar la eliminación a manos de sus rivales.</p>
+        <p>Los ciempiés de cada colmena se lanzan valientemente al combate, luchando con todas sus fuerzas para proteger su hogar y asegurar la supremacía de su colmena. Las batallas son encarnizadas y llenas de giros inesperados, mientras estrategias ingeniosas y tácticas astutas son empleadas en cada enfrentamiento.</p>
+        <p>Tú, como jugador, tienes el poder de decidir el destino de tu colmena en esta guerra sin cuartel. ¿Será tu colmena la que se alce victoriosa sobre las demás, o sucumbirá ante la devastación de la batalla? ¡La elección está en tus manos mientras te embarcas en esta emocionante aventura en el mundo de los ciempiés!</p>
+        </div>
+        <div id="Gameplay">
+        <h2>Gameplay</h2>
+            <video width="640" height="360" controls>
+            <source src="Video/Gameplay Centipede Wars.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div id="Objetivo">
+        <h2>Objetivos</h2>
+        <h3>Objetivo Principal: $10,000</h3>
+        <p> Financiará el desarrollo completo del juego, incluyendo diseño, programación y pruebas.</p>
+        <h3>Objetivos Adicionales</h3>
+        <h4>$15,000</h4>
+        <h5>Más cartas</h5>
+        <p>Ampliar la biblioteca de cartas, agregando más variedad y estrategias.</p>
+        <h4>$20,000</h4>
+        <h5>Nuevas características</h5>
+        <p>Agregar nuevas características al juego, como modos de juego adicionales y opciones de personalización de cartas.</p>
+        <h4>$25,000</h4>
+        <h5>Versión para movil</h5>
+        <p>Desarrollar una versión móvil del juego para que los jugadores puedan disfrutarlo en cualquier lugar</p>
+        <h4>$30,000</h4>
+        <h5>Versión para consolas</h5>
+        <p>Desarrollar una versión para consolas de alta definición, para que los jugadores puedan disfrutarlo desde su consola favorita.</p>
+        <h4>Tu apoyo es esencial para llevar "Centipede Wars" a nuevas alturas. ¡Únete a nuestra expedición y sé parte de esta emocionante aventura de cartas!</h4>
+        <a href="#" onclick="showPage('Recompensas')" class="recompensas-boton">Link Donaciones</a>
+        </div>
+        <div id="Equipo">
+        <h2>Equipo</h2>
+        <p>Creadores del videojuego y de la página web</p>
+        <h3>JESÚS MAGALLANES DUEÑAS</h3>
+        <h3>ALEJANDRO MARÍN SÁNCHEZ</h3>
+        <h3>CARLOS MARTINEZ GARCIA</h3>
+        <h3>IVAN PALACIOS MARTIN</h3>
+        <h3>LUIS PRIETO GONZÁLEZ</h3>
+        <h3>CARLOS VEGAS ORIA</h3>
+        </div>
+    </section>
+
+    <section id="Recompensas">
+        <div class="submenu">
+            <ul>
+                <li><a href="#Explorer">Explorer</a></li>
+                <li><a href="#Collector">Collector</a></li>
+                <li><a href="#Adventurer">Adventurer</a></li>
+                <li><a href="#Strategist">Strategist</a></li>
+                <li><a href="#GroupExplorer">Group Explorer</a></li>
+                <li><a href="#ExpeditionLeader">Expedition Leader</a></li>
+            </ul>
+        </div>
+        <div id="TopDonadores" class="Recompensa">
+            <h2>Top Donadores</h2>
+            <h3>Top 1</h3>
+            <h4>Nombre Donador Nº1</h4>
+            <h3>Top 2</h3>
+            <h4>Nombre Donador Nº2</h4>
+            <h3>Top 3</h3>
+            <h4>Nombre Donador Nº3</h4>
+        </div>
+        <div id="Explorer" class="Recompensa">
+        <h2>Explorer</h2>
+        <p>Embárcate en una emocionante aventura con una copia digital de "Centipede Wars". Además, recibirás una baraja extra de cartas en el juego y tu nombre será mencionado en los créditos del juego.</p>
+        <a class="recompensas-boton" onclick="alert('Contribuiste con $5');">Contribuye $5</a>
+        </div>
+        <div id="Collector" class="Recompensa">
+        <h2>Collector</h2>
+        <p>Únete a la acción con una copia digital de "Centipede Wars", recibirás un paquete especial de cartas exclusivas en el juego y los perks de la contribución "Explorer". ¡Prepárate para la batalla!</p>
+        <a class="recompensas-boton" onclick="alert('Contribuiste con $10');">Contribuye $10</a>
+        </div>
+        <div id="Adventurer" class="Recompensa">
+        <h2>Adventurer</h2>
+        <p> Hazte con el manual físico exclusivo de "Centipede Wars",que contendrá todos los secretos y cartas a coleccionar, además de los perks de las contribuciones "Explorer" y "Collector".</p>
+        <a class="recompensas-boton" onclick="alert('Contribuiste con $15');">Contribuye $15</a>
+        </div>
+        <div id="Strategist" class="Recompensa">
+        <h2>Strategist</h2>
+        <p>Demuestra tus habilidades estratégicas con la guía exclusiva de "Centipede Wars", además de una baraja premium de cartas y los perks de las contribuciones anteriores. ¡Conviértete en el maestro de la jungla!</p>
+        <a class="recompensas-boton" onclick="alert('Contribuiste con $20');">Contribuye $20</a>
+        </div>
+        <div id="GroupExplorer" class="Recompensa">
+        <h2>Group Explorer</h2>
+        <p>Obtén cuatro copias del juego "Centipede Wars" para compartir con amigos y familiares, cada una con una selección exclusiva de cartas digitales y los perks de todas las contribuciones anteriores</p>
+        <a class="recompensas-boton" onclick="alert('Contribuiste con $30');">Contribuye $30</a>
+        </div>
+        <div id="ExpeditionLeader" class="Recompensa">
+        <h2>Expedition Leader</h2>
+        <p>Lidera la expedición con una edición de lujo de "Centipede Wars", que incluye acceso al juego, una colección premium de cartas digitales, un set exclusivo de avatares y tu nombre destacado en los créditos del juego. También recibirás los perks de todas las contribuciones anteriores.</p>
+        <a class="recompensas-boton" onclick="alert('Contribuiste con $50');">Contribuye $50</a>
+        </div>
+    </section>
+
+    <section id="Preguntas Frecuentes">
+        <div class="submenu">
+            <ul>
+                <li><a href="#">1ª Pregunta</a></li>
+                <li><a href="#">2ª Pregunta</a></li>
+                <li><a href="#">3ª Pregunta</a></li>
+                <li><a href="#">4ª Pregunta</a></li>
+            </ul>
+        </div>
+        <div id="Pregunta1">
+        <h2>¿Podría jugar con mis amigos a este juego?</h2>
+        <p>¡Sí! El juego dispondrá de un modo multijugador local y un modo de multijugador online</p>
+        </div>
+        <div id="Pregunta2">
+        <h2>¿Existe una versión física del juego?</h2>
+        <p>Aún no, pero... ¡Es posible que pueda existir en un futuro si este proyecto tiene éxito!</p>
+        </div>
+        <div id="Pregunta3">
+        <h2>¿Para qué plataformas saldrá este juego?</h2>
+        <p>Aún no es seguro, pero intentaremos lanzarlo para la mayor cantidad de plataformas posibles.</p>
+        </div>
+        <div id="Pregunta4">
+        <h2>¿Jugar a esto podría considerarse maltrato animal?</h2>
+        <p>¡No! Ningún ciempiés real ha sido perjudicado en el proceso de creación de este juego. :D</p>
+        </div>
+    </section>
+
+    <section id="Comentarios">
+            <h3>Escribe aquí tu comentario:</h3>
+            <div id="contenedor-comentarios">
+            </div>
+            <form id="SeccionComentarios">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required><br><br>
+                <label for="comentario">Comentario:</label><br>
+                <textarea id="comentario" name="comentario" rows="4" cols="50" required></textarea><br><br>
+                <button type="submit">Enviar comentario</button>
+            </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Centipede Wars. ATENCIÓN: Esta página simula la campaña de microfinanciación de un videojuego ficticio y no representa un producto real. Práctica de Multimedia, 1o GDDV - Curso 23/24 (Móstoles), URJC. La URJC no se hace responsable del contenido expuesto por el autor.</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                section.style.display = 'none';
+            });
+
+            var pageToShow = document.getElementById(pageId);
+            if (pageToShow) {
+                pageToShow.style.display = 'block';
+            }
+
+            var submenus = document.querySelectorAll('.submenu');
+            submenus.forEach(function(submenu) {
+                submenu.style.display = 'none';
+            });
+
+            var submenuToShow = document.querySelector('#' + pageId + ' .submenu');
+            if (submenuToShow) {
+                submenuToShow.style.display = 'block';
+            }
+        }
+    </script>
+    <script>
+    document.getElementById('SeccionComentarios').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var nombre = document.getElementById('nombre').value;
+        var comentario = document.getElementById('comentario').value;
+
+        var comentarioNuevo = document.createElement('div');
+        comentarioNuevo.innerHTML = '<strong>' + nombre + ':</strong> ' + comentario;
+
+        var contenedorComentarios = document.getElementById('contenedor-comentarios');
+        contenedorComentarios.appendChild(comentarioNuevo);
+
+        document.getElementById('nombre').value = '';
+        document.getElementById('comentario').value = '';
+    });
+</script>
+</body>
+</html>
